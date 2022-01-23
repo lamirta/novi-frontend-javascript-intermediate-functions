@@ -9,7 +9,12 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+function getEmailDomain(emailAddress) {
+    const indexOfAt = emailAddress.indexOf("@")
+    return emailAddress.substring(indexOfAt + 1);
+}
 
+console.log(getEmailDomain("mirte.houwing@novi-education.nl"));
 
 
 /* Opdracht  2 */
@@ -20,7 +25,19 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
+function typeOfEmail(emailAddress) {
+    if (emailAddress.includes("@novi-education.nl")) {
+        return "Student"
+    } else if (emailAddress.includes("@novi.nl")) {
+        return "Medewerker"
+    } else {
+        return "Extern"
+    }
+}
 
+console.log(typeOfEmail("mirte.houwing@novi-education.nl"));
+console.log(typeOfEmail("t.mellink@novi.nl"));
+console.log(typeOfEmail("test@gmail.com"));
 
 /* Opdracht  3 */
 // Schrijf een functie genaamd checkEmailValidity, die een emailadres verwacht en checkt of het emailadres valide is. De functie returned true of false, afhankelijk van de uitkomst.
@@ -34,3 +51,23 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+
+function checkEmailValidity(emailAddress) {
+    const containsAt = emailAddress.includes("@");
+    const containsComma = emailAddress.includes(",");
+    const lastIndexChar = emailAddress.charAt(emailAddress.length - 1);
+
+    if (containsAt === true && containsComma !== true && lastIndexChar !== "." ) {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+console.log(checkEmailValidity("n.eeken@novi.nl"));
+console.log(checkEmailValidity("tessmellink@novi.nl"));
+console.log(checkEmailValidity("n.eekenanovi.nl"));
+console.log(checkEmailValidity("n.eeken@novinl."));
+console.log(checkEmailValidity("tessmellink@novi,nl"));
